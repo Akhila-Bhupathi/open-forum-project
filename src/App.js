@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
 
+import "./App.css";
+
+import Home from './components/Home/Home';
+import CreatePost from './components/CreatePost/CreatePost';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import NavBar from './components/NavBar/NavBar.js';
+import CompletePost from "./components/CompletePost/CompletePost"; 
+import Badges from "./components/Badges/Badges";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  
+  return(
+    <Router>
+    
+      <NavBar />
+      <Switch>
+        <Route path="/create" component={CreatePost} />
+        <Route path="/badges" component={Badges} />
+        <Route path="/completePost/:post" component={CompletePost} />
+        <Route path="/" component={Home} >
+          </Route>
+      </Switch> 
+ 
+    </Router>
+    
+  
   );
+  
 }
 
 export default App;
+
+/*    
+ 
+<Sample/>
+
+
+    
+    */
