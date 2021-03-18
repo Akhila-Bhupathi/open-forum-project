@@ -43,6 +43,38 @@ const CompletePost = (props) => {
     });
   }
 
+
+
+
+  const voteComment=(e,com_id)=>{
+    var data={
+      "user_id":parseInt(localStorage.getItem('user_id')),
+      "com_id":com_id
+    }
+    console.log(data);
+    console.log(JSON.stringify(data));
+    axios.post('https://morning-temple-69567.herokuapp.com/votes/comments', JSON.stringify(data), {
+        headers: {
+         'Accept': 'application/json',
+         'Content-Type': 'application/json',
+        }
+})
+.then((response) => {
+ console.log(response.data); 
+ getComments();    
+
+
+//votes=response.data;
+})
+.catch((error) => {
+ console.log(error);
+}) 
+  }
+
+
+
+
+
   const getComments=()=>{
     axios
     .get(`https://morning-temple-69567.herokuapp.com/posts/${post_id1}/${user}`)
@@ -82,6 +114,12 @@ const CompletePost = (props) => {
     /*  dispatch(addPost(formData));
       history.push('/');*/
   };
+
+  /*const dateformat=(d)=>{
+    var dateParts = d.split("-");
+var jsDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2].substr(0, 2), dateParts[2].substr(3, 2), dateParts[2].substr(6, 2), dateParts[2].substr(9, 2));
+return js
+  }  */
 
   return (
     <>
@@ -208,7 +246,7 @@ const CompletePost = (props) => {
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={2} className={classes.cgrid}>
-                <Button>
+                <Button onClick={(e)=>voteComment(e,comment.com_id)}>
                   <img src={uparrow} className={classes.voteicon} />
                 </Button>
                 <Typography variant="h6" className={classes.cvotes}>

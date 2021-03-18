@@ -55,7 +55,7 @@ const Badges = () => {
         <div>
           {users.map((user)=>(user.email==email ?
           <div key={user.email}>
-              <Paper elevation={1} align="center">
+              <Paper  align="center">
                 <Typography variant="h3" align="center" >
                     Hi {user.name}
                 </Typography>
@@ -76,9 +76,11 @@ const Badges = () => {
                 <br/>
                 <br/>
                 <Button onClick={(e)=>view(user.Points)} style={{backgroundColor:'#3f51b5',color:'white'}}>View Progress</Button>
-                
+                <br/>
+                <br/>
                 </Paper></div>:<div></div>
           ))}
+<br/>
 
 <Grid container spacing={3}>
         <Grid item xs={8}>

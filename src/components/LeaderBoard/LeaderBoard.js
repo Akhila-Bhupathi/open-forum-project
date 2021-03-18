@@ -24,7 +24,7 @@ function LeaderBoard() {
 
   return (
       
-    <Card className={classes.root} elevation={15}>
+    <Card className={classes.root} elevation={5}>
       <CardContent>
         <Typography
           className={classes.title}
