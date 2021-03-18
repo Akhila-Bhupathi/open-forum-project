@@ -26,7 +26,6 @@ const CompletePost = (props) => {
   const user = localStorage.getItem("user_id");
   const [newcomment, setNewComment] = useState({
     user_id: parseInt(user),
-    title: "",
     body: "",
     votes: 0,
   });
@@ -34,7 +33,7 @@ const CompletePost = (props) => {
 
   useEffect(() => {
     axios
-      .get(`https://morning-temple-69567.herokuapp.com/posts/${post_id1}`)
+      .get(`https://morning-temple-69567.herokuapp.com/posts/${post_id1}/${user}`)
       .then((response) => {
         setPosts(response.data.post);
         setComments(response.data.comments);
@@ -42,7 +41,7 @@ const CompletePost = (props) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [location]);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,11 +52,15 @@ const CompletePost = (props) => {
         `https://morning-temple-69567.herokuapp.com/posts/${post_id1}/comments`,
         newcomment
       )
-      .then((response) => console.log(response))
+      .then((response) => {console.log(response);
+        const nw=response.data.body;
+        console.log(nw);
+      setComments(comments=>[...comments,response.data.body]);
+      })
       .catch((error) => {
         console.log(error);
       });
-    history.push('/');
+   history.push(`/completePost/${post_id1}`);
     /*  dispatch(addPost(formData));
       history.push('/');*/
   };
@@ -144,11 +147,6 @@ const CompletePost = (props) => {
               key={comment.gridcomments}
               className={classes.comment}
             >
-              <Grid item xs={12}>
-                <Typography variant="h5" className={classes.ctitle}>
-                  {comment.title}
-                </Typography>
-              </Grid>
               <Grid item xs={12} sm={10} className={classes.cgrid}>
                 <Typography variant="body1" className={classes.cbody}>
                   {comment.body}
@@ -180,22 +178,12 @@ const CompletePost = (props) => {
                 className={classes.form}
                 autoComplete="off"
               >
-                <TextField
-                  className={classes.text}
-                  variant="standard"
-                  name="title"
-                  label="Title"
-                  fullWidth
-                  value={newcomment.title}
-                  onChange={(e) =>
-                    setNewComment({ ...newcomment, title: e.target.value })
-                  }
-                ></TextField>
+                
                 <TextField
                   className={classes.text}
                   variant="standard"
                   name="body"
-                  label="Body"
+                  label="Comment"
                   fullWidth
                   value={newcomment.body}
                   onChange={(e) =>

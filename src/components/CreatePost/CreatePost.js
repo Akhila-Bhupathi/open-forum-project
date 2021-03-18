@@ -17,12 +17,12 @@ import axios from "axios";
 const CreatePost = () => {
   const classes = useStyles();
   const user = localStorage.getItem("user_id");
+  const [selectedFile, setSelectedFile] = useState(null);
   const [formData, setFormData] = useState({
     user_id: parseInt(user),
     title: "",
     overview: "",
     body: "",
-    image: "",
     votes: 0,
   });
 
@@ -35,11 +35,14 @@ const CreatePost = () => {
   formData1.append("title", formData.title);
   formData1.append("overview",formData.overview );
   formData1.append("body", formData.body);
-  formData1.append("image",formData.image );
+  formData1.append("image",selectedFile );
   formData1.append("votes",formData.votes );
 
     e.preventDefault();
     console.log(formData);
+    console.log(selectedFile);
+    console.log(formData1);
+    console.log(JSON.stringify(formData1));
  /*  axios.post('https://morning-temple-69567.herokuapp.com/posts',formData1).then((response)=>{console.log(response);
    history.push('/');
   }).catch((error)=>{
@@ -55,10 +58,10 @@ const CreatePost = () => {
       }) 
       .then((response) => {
         console.log(response); //
-        history.push("/");
+       history.push("/");
       })
       .catch((error) => {
-        console.log(error);
+       // console.log(error);
       });  
       
        // 
@@ -115,9 +118,16 @@ const CreatePost = () => {
             <input
             type="file"
             name="image"
-            onChange={(e) => setFormData({ ...formData, image: e.target.files[0] })}
+            //value={formData.image}
+            //onChange={(e) => setFormData({ ...formData, image: e.target.files[0] })}
+           // value={selectedFile}
+            onChange={(e) => setSelectedFile(e.target.files[0])}
             />
           </div>
+
+
+
+          
           <Button
             variant="contained"
             color="primary"

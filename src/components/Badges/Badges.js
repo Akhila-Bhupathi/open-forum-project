@@ -1,8 +1,9 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
-import {Paper,Typography,Grid} from '@material-ui/core';
+import {Paper,Typography,Grid,Button} from '@material-ui/core';
 import ProgressBar from './ProgressBar';
 import EachBadge from './EachBadge';
+import './style.css';
 
 const Badges = () => {
     const [users,setUsers]=useState([]);
@@ -20,30 +21,36 @@ const Badges = () => {
 
     const points=users.map((user)=>(user.email==email?
         user.Points:null))
-
+        const [p1,setp1]=useState();
+        const [p2,setp2]=useState();
+        const [p3,setp3]=useState();
+        const [p4,setp4]=useState();
     const p=points;
-    var p1=0,p2=0,p3=0,p4=0;
-    if(p<=400 && p>300){
-        p4=p-300;
+    const view=(p)=>{
+        
+        const l=100;
+        if(p<=l){
+            setp1(p);
+        }
+        if(p>l && p<=(2*l)){
+            setp2(p-l);
+            setp1(100);
+        }
+        if(p>(2*l) && p<=(3*l)){
+            setp3(p-l);
+        }
+        if(p>(3*l) && p<=(4*l)){
+            setp4(p-l);
+        }
+        
     }
-    else if(p<=300 && p>200){
-        p3=p-200;
-    }
-    else if(p<=200 && p>100){
-        p2=p-100;
-    }
-    if(p<100)
-    {
-        p1=p;
-    }
-    //const p1=50;
-   // const [Points,setPoints]=useState();
+
     
     return (
         <div>
           {users.map((user)=>(user.email==email ?
-          <div>
-              <Paper elevation={1}>
+          <div key={user.email}>
+              <Paper elevation={1} align="center">
                 <Typography variant="h3" align="center" >
                     Hi {user.name}
                 </Typography>
@@ -58,37 +65,51 @@ const Badges = () => {
                 <Typography variant="h5" align="center" >
                     Total Comments : {user.total_comments}
                 </Typography>
+                <Typography variant="h5" align="center" >
+                    Total Points : {user.Points}
+                </Typography>
                 <br/>
                 <br/>
-                
+                <Button onClick={(e)=>view(user.Points)} style={{backgroundColor:'#3f51b5',color:'white'}}>View Progress</Button>
                 
                 </Paper></div>:<div></div>
           ))}
 
 <Grid container spacing={3}>
-        <Grid item xs={6}>
+        <Grid item xs={8}>
           <ProgressBar Points={p1}/>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <Typography variant="h6">Level 1</Typography>
         </Grid>
     </Grid>
 
     <Grid container spacing={3}>
-        <Grid item xs={6}>
+        <Grid item xs={8}>
           <ProgressBar Points={p2}/>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <Typography variant="h6">Level 2</Typography>
         </Grid>
     </Grid>
 
-                
-              
-              
-          
-          
-          
+    <Grid container spacing={3}>
+        <Grid item xs={8}>
+          <ProgressBar Points={p3}/>
+        </Grid>
+        <Grid item xs={4}>
+          <Typography variant="h6">Level 3</Typography>
+        </Grid>
+    </Grid>
+
+    <Grid container spacing={3}>
+        <Grid item xs={8}>
+          <ProgressBar Points={p4}/>
+        </Grid>
+        <Grid item xs={4}>
+          <Typography variant="h6">Level 4</Typography>
+        </Grid>
+    </Grid>
         </div>
     )
 }

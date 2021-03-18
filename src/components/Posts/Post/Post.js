@@ -21,6 +21,7 @@ const Post = ({post}) => {
     const classes = useStyles();
     const history=useHistory();
     const [vote,setVote]=useState();
+    const [id,setid]=useState();
     const send=(e)=>{
       e.preventDefault();
       history.push(`/completepost/${post.post_id}`)

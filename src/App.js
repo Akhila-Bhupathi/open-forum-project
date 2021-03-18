@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from './components/NavBar/NavBar.js';
 import CompletePost from "./components/CompletePost/CompletePost"; 
 import Badges from "./components/Badges/Badges";
+import FileUploadPage from './components/CreatePost/FileUploadPage';
 function App() {
   
   return(

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import useStyles from "./styles.js";
 import AddIcon from '@material-ui/icons/Add';
 import {useState,useEffect} from 'react';
-
+import FileUploadPage from '../CreatePost/FileUploadPage';
 import {useHistory,useLocation} from 'react-router-dom';
 import GL from '../GoogleLogin/GL';
 import axios from 'axios';
