@@ -86,7 +86,7 @@ const CompletePost = (props) => {
             >
               <img
                 className={classes.img}
-                src={`https://floating-ridge-28249.herokuapp.com/images/uploads/${posts.image}`}
+                src={`https://morning-temple-69567.herokuapp.com/images/uploads/${posts.image}`}
               />
             </Grid>
             <Grid
