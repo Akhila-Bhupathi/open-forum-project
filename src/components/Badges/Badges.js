@@ -34,12 +34,17 @@ const Badges = () => {
         }
         if(p>l && p<=(2*l)){
             setp2(p-l);
-            setp1(100);
+            setp1(l);
         }
         if(p>(2*l) && p<=(3*l)){
+            setp1(l);
+            setp2(2*l);
             setp3(p-l);
         }
         if(p>(3*l) && p<=(4*l)){
+            setp1(l);
+            setp2(2*l);
+            setp3(3*l);
             setp4(p-l);
         }
         

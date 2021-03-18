@@ -178,8 +178,8 @@ history.push('/');
                }}><img className={classes.voteicon} src={uparrow} /> </Button>
                <Typography variant="h6">
                  
-               {(post_to_be_updated==post.post_id)  ? <div>{newvote}</div>
-                :<div>{post.votes}</div>      }           
+               
+                <div>{post.votes}</div>                 
                  
                  
                  
@@ -210,3 +210,7 @@ history.push('/');
 }
 
 export default Home
+
+
+
+// {(post_to_be_updated==post.post_id)  ? 

@@ -31,20 +31,37 @@ const CompletePost = (props) => {
   });
   const id = localStorage.getItem("id");
 
-  useEffect(() => {
+  const getPosts=()=>{
     axios
-      .get(`https://morning-temple-69567.herokuapp.com/posts/${post_id1}/${user}`)
-      .then((response) => {
-        setPosts(response.data.post);
-        setComments(response.data.comments);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    .get(`https://morning-temple-69567.herokuapp.com/posts/${post_id1}/${user}`)
+    .then((response) => {
+      setPosts(response.data.post);
+      setComments(response.data.comments);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  const getComments=()=>{
+    axios
+    .get(`https://morning-temple-69567.herokuapp.com/posts/${post_id1}/${user}`)
+    .then((response) => {
+      setComments(response.data.comments);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+
+  useEffect(() => {
+    getPosts();
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    e.target.reset();
     // setNewComment({...newcomment,post_id:post_id1});
     console.log(newcomment);
     axios
@@ -53,14 +70,15 @@ const CompletePost = (props) => {
         newcomment
       )
       .then((response) => {console.log(response);
-        const nw=response.data.body;
-        console.log(nw);
-      setComments(comments=>[...comments,response.data.body]);
+       // const nw=response.data.body;
+        console.log(response);
+        getComments();
+     // setComments(comments=>[...comments,response.data.body]);
       })
       .catch((error) => {
         console.log(error);
       });
-   history.push(`/completePost/${post_id1}`);
+   //history.push(`/completePost/${post_id1}`);
     /*  dispatch(addPost(formData));
       history.push('/');*/
   };
@@ -133,14 +151,48 @@ const CompletePost = (props) => {
             </Typography>
           </Paper>
         )}
+        <Typography variant="h4" style={{ marginTop: 100, marginBottom: 40 }}>
+            Add a comment
+          </Typography>
+
+          {id && (
+            <Paper  className={classes.cpaper}>
+              <form
+                onSubmit={handleSubmit}
+                className={classes.form}
+                
+              >
+                
+                <TextField
+                  className={classes.text}
+                  variant="standard"
+                  name="body"
+                  label="Comment"
+                  fullWidth
+                  
+                  onChange={(e) =>
+                    setNewComment({ ...newcomment, body: e.target.value })
+                  }
+                ></TextField>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.buttonSubmit}
+                  type="submit"
+                  className={classes.button}
+                  endIcon={<SendIcon />}
+                ></Button>
+              </form>
+            </Paper>
+          )}
 
         <Typography className={classes.commentstr} variant="h4">
           Comments
         </Typography>
         {comments.length==0 && <Paper><Typography variant="body2">No comments</Typography></Paper>}
-        <Paper className={classes.comments}>
+          
           {comments.map((comment) => (
-            <Paper elevation={2}>  
+            <Paper >  
             <Grid
               container
               spacing={3}
@@ -167,41 +219,8 @@ const CompletePost = (props) => {
             </Paper>
           ))}
 
-          <Typography variant="h4" style={{ marginTop: 100, marginBottom: 40 }}>
-            Add a comment
-          </Typography>
 
-          {id && (
-            <Paper elevation={3} className={classes.cpaper}>
-              <form
-                onSubmit={handleSubmit}
-                className={classes.form}
-                autoComplete="off"
-              >
-                
-                <TextField
-                  className={classes.text}
-                  variant="standard"
-                  name="body"
-                  label="Comment"
-                  fullWidth
-                  value={newcomment.body}
-                  onChange={(e) =>
-                    setNewComment({ ...newcomment, body: e.target.value })
-                  }
-                ></TextField>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.buttonSubmit}
-                  type="submit"
-                  className={classes.button}
-                  endIcon={<SendIcon />}
-                ></Button>
-              </form>
-            </Paper>
-          )}
-        </Paper>
+        
       </Container>
     </>
   );
