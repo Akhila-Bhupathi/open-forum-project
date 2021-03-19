@@ -101,7 +101,7 @@ const CompletePost = (props) => {
         `https://morning-temple-69567.herokuapp.com/posts/${post_id1}/comments`,
         newcomment
       )
-      .then((response) => {console.log(response);
+      .then((response) => {//console.log(response);
        // const nw=response.data.body;
        // console.log(response);
         getComments();
