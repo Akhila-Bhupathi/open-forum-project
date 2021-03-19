@@ -13,7 +13,7 @@ const GL = () => {
         "email": response.profileObj.email,
         "tumbnail": response.profileObj.imageUrl
       }
-      console.log(JSON.stringify(data)); 
+     // console.log(JSON.stringify(data)); 
       localStorage.setItem('id',response.profileObj.googleId);
           localStorage.setItem('name',response.profileObj.name);
           localStorage.setItem('email',response.profileObj.email);
@@ -26,12 +26,12 @@ const GL = () => {
         }
 })
 .then((response) => {
- console.log(response.data);     //http://localhost:5000
+// console.log(response.data);     //http://localhost:5000
 localStorage.setItem("user_id",response.data.user_id);
 history.push('/');
 })
 .catch((error) => {
- console.log(error);
+ //console.log(error);
 })
 
 }

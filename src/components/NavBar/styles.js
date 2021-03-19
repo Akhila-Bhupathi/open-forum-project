@@ -35,6 +35,11 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     width:'100px'
   },
+  my_posts: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width:'120px'
+  },
 
   profilephoto: {
     display: 'flex',

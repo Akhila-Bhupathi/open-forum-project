@@ -39,7 +39,7 @@ const CompletePost = (props) => {
       setComments(response.data.comments);
     })
     .catch((error) => {
-      console.log(error);
+   //   console.log(error);
     });
   }
 
@@ -60,14 +60,14 @@ const CompletePost = (props) => {
         }
 })
 .then((response) => {
- console.log(response.data); 
+ //console.log(response.data); 
  getComments();    
 
 
 //votes=response.data;
 })
 .catch((error) => {
- console.log(error);
+// console.log(error);
 }) 
   }
 
@@ -82,7 +82,7 @@ const CompletePost = (props) => {
       setComments(response.data.comments);
     })
     .catch((error) => {
-      console.log(error);
+ //     console.log(error);
     });
   }
 
@@ -95,7 +95,7 @@ const CompletePost = (props) => {
     e.preventDefault();
     e.target.reset();
     // setNewComment({...newcomment,post_id:post_id1});
-    console.log(newcomment);
+   // console.log(newcomment);
     axios
       .post(
         `https://morning-temple-69567.herokuapp.com/posts/${post_id1}/comments`,
@@ -103,12 +103,12 @@ const CompletePost = (props) => {
       )
       .then((response) => {console.log(response);
        // const nw=response.data.body;
-        console.log(response);
+       // console.log(response);
         getComments();
      // setComments(comments=>[...comments,response.data.body]);
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
       });
    //history.push(`/completePost/${post_id1}`);
     /*  dispatch(addPost(formData));
@@ -185,7 +185,7 @@ return js
               {posts.name}
             </Typography>
             <Typography variant="h6" className={classes.date}>
-              {posts.created}
+              {/*{posts.created} */}
             </Typography>
           </Paper>
         )}
@@ -234,16 +234,17 @@ return js
             <Grid
               container
               spacing={3}
-              key={comment.gridcomments}
+              key={comment.com_id}
               className={classes.comment}
             >
               <Grid item xs={12} sm={10} className={classes.cgrid}>
+              <Typography variant="h6" className={classes.cname}>
+                  {comment.name}
+                </Typography>
                 <Typography variant="body1" className={classes.cbody}>
                   {comment.body}
                 </Typography>
-                <Typography variant="subtitle1" className={classes.cname}>
-                  {comment.name}
-                </Typography>
+                
               </Grid>
               <Grid item xs={12} sm={2} className={classes.cgrid}>
                 <Button onClick={(e)=>voteComment(e,comment.com_id)}>

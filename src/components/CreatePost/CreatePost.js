@@ -39,10 +39,10 @@ const CreatePost = () => {
   formData1.append("votes",formData.votes );
 
     e.preventDefault();
-    console.log(formData);
-    console.log(selectedFile);
-    console.log(formData1);
-    console.log(JSON.stringify(formData1));
+  //  console.log(formData);
+ //   console.log(selectedFile);
+   // console.log(formData1);
+    //console.log(JSON.stringify(formData1));
  /*  axios.post('https://morning-temple-69567.herokuapp.com/posts',formData1).then((response)=>{console.log(response);
    history.push('/');
   }).catch((error)=>{
@@ -57,7 +57,7 @@ const CreatePost = () => {
         },
       }) 
       .then((response) => {
-        console.log(response); //
+      //  console.log(response); //
        history.push("/");
       })
       .catch((error) => {

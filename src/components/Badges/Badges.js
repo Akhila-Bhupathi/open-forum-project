@@ -13,9 +13,9 @@ const Badges = () => {
     useEffect(()=>{
         axios.get("https://morning-temple-69567.herokuapp.com/profile/lead").then(response=>{
             setUsers(response.data);
-            console.log(response);
+          //  console.log(response);
         }).catch((error)=>{
-            console.log(error);
+           // console.log(error);
         })
     },[]);
 

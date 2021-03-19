@@ -62,7 +62,7 @@ export default makeStyles((theme) => ({
         margin:'0 auto',
         align:'center',
         padding:20,
-        marginTop:20,
+        //marginTop:20,
         display:'flex',
         
         
@@ -80,12 +80,13 @@ export default makeStyles((theme) => ({
         width:50,
         height:50
       },
-      cname:{
-        marginTop:10
-      },
+     cname:{
+        marginBottom:50
+      }, 
       cbody:{
         paddingLeft:20,
-      },
+        marginTop:50,
+      }, 
       cpaper: {
         padding: theme.spacing(1),
         width:'100%',

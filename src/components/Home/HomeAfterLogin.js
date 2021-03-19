@@ -19,12 +19,12 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import CompletePost from '.././CompletePost/CompletePost';
 import {useHistory} from 'react-router-dom';
 import uparrow from '../.././images/up-arrow.png';
-import notupvote from '../.././images/not-upvote.jpg';
+import notvote from '../.././images/not-vote.png';
 
 import axios from 'axios';
 import LeaderBoard from '../LeaderBoard/LeaderBoard';
 
-const Home = () => {
+const HomeAfterLogin = () => {
   
   const history=useHistory();
   const user=localStorage.getItem('user_id');
@@ -38,32 +38,32 @@ const Home = () => {
   var post_to;
   const getPosts=()=>{
     axios.get('https://morning-temple-69567.herokuapp.com/posts').then(response=>setposts(response.data)).catch((error) => {
-   //   console.log(error);
+      console.log(error);
     });  
   }
 
   const callApi=()=>{
-  //  console.log('e');
-   // console.log(data);
+    console.log('e');
+    console.log(data);
    axios
       .post(
         "https://morning-temple-69567.herokuapp.com/votes/posts",data
       )
       .then((response) => {
         
-   //     console.log(response);
+        console.log(response);
         const votes=response.data.votes;
         setNewVote(votes);
        // getPosts();
       })
       .catch((error) => {
-     //   console.log(error);
+        console.log(error);
       });  
   }
 
   const vote=(post_id)=>{
-    //console.log("Voted");
-  //console.log(post_id);
+    console.log("Voted");
+  console.log(post_id);
   
   //setPostToBe(post_id);
   //setData({...data,post_id:post_id});
@@ -71,8 +71,8 @@ const Home = () => {
     "user_id":parseInt(localStorage.getItem('user_id')),
     "post_id":post_id
   }
- // console.log(data);
- // console.log(JSON.stringify(data));
+  console.log(data);
+  console.log(JSON.stringify(data));
  // setData({...data,post_id:post_id});
  // console.log(data);
  // callApi();
@@ -84,7 +84,7 @@ const Home = () => {
         }
 })
 .then((response) => {
- //console.log(response.data); 
+ console.log(response.data); 
  getPosts();    //http://localhost:5000
 //localStorage.setItem("user_id",response.data.user_id);
 //history.push('/');
@@ -92,7 +92,7 @@ const Home = () => {
 votes=response.data;
 })
 .catch((error) => {
-// console.log(error);
+ console.log(error);
 }) 
 
 
@@ -209,7 +209,7 @@ history.push('/');
     );
 }
 
-export default Home
+export default HomeAfterLogin
 
 
 
