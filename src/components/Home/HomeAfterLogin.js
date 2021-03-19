@@ -19,12 +19,12 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import CompletePost from '.././CompletePost/CompletePost';
 import {useHistory} from 'react-router-dom';
 import uparrow from '../.././images/up-arrow.png';
-import notvote from '../.././images/not-vote.png';
+import notupvote from '../.././images/not-vote.png';
 
 import axios from 'axios';
 import LeaderBoard from '../LeaderBoard/LeaderBoard';
 
-const HomeAfterLogin = () => {
+const Home = () => {
   
   const history=useHistory();
   const user=localStorage.getItem('user_id');
@@ -37,33 +37,33 @@ const HomeAfterLogin = () => {
   var votes;
   var post_to;
   const getPosts=()=>{
-    axios.get('https://morning-temple-69567.herokuapp.com/posts').then(response=>setposts(response.data)).catch((error) => {
-      console.log(error);
+    axios.get(`https://morning-temple-69567.herokuapp.com/posts/log/${user}`).then(response=>setposts(response.data)).catch((error) => {
+   //   console.log(error);
     });  
   }
 
   const callApi=()=>{
-    console.log('e');
-    console.log(data);
+  //  console.log('e');
+   // console.log(data);
    axios
       .post(
         "https://morning-temple-69567.herokuapp.com/votes/posts",data
       )
       .then((response) => {
         
-        console.log(response);
+   //     console.log(response);
         const votes=response.data.votes;
         setNewVote(votes);
        // getPosts();
       })
       .catch((error) => {
-        console.log(error);
+     //   console.log(error);
       });  
   }
 
   const vote=(post_id)=>{
-    console.log("Voted");
-  console.log(post_id);
+    //console.log("Voted");
+  //console.log(post_id);
   
   //setPostToBe(post_id);
   //setData({...data,post_id:post_id});
@@ -71,8 +71,8 @@ const HomeAfterLogin = () => {
     "user_id":parseInt(localStorage.getItem('user_id')),
     "post_id":post_id
   }
-  console.log(data);
-  console.log(JSON.stringify(data));
+ // console.log(data);
+ // console.log(JSON.stringify(data));
  // setData({...data,post_id:post_id});
  // console.log(data);
  // callApi();
@@ -84,7 +84,7 @@ const HomeAfterLogin = () => {
         }
 })
 .then((response) => {
- console.log(response.data); 
+ //console.log(response.data); 
  getPosts();    //http://localhost:5000
 //localStorage.setItem("user_id",response.data.user_id);
 //history.push('/');
@@ -92,7 +92,7 @@ const HomeAfterLogin = () => {
 votes=response.data;
 })
 .catch((error) => {
- console.log(error);
+// console.log(error);
 }) 
 
 
@@ -173,9 +173,18 @@ history.push('/');
              </CardActionArea>
              <CardActions>
                
-               <Button disabled={!user} onClick={(e)=>{
-               vote(post.post_id);
-               }}><img className={classes.voteicon} src={uparrow} /> </Button>
+
+               {(post.voted==0)?(
+                    <Button disabled={!user} onClick={(e)=>{
+                        vote(post.post_id);
+                        }}><img className={classes.voteicon} src={notupvote} /> </Button> ):(
+                            <Button disabled={!user} 
+                                ><img className={classes.voteicon} src={uparrow} /> </Button>
+
+                        
+
+               )}
+               
                <Typography variant="h6">
                  
                
@@ -209,7 +218,7 @@ history.push('/');
     );
 }
 
-export default HomeAfterLogin
+export default Home
 
 
 

@@ -28,7 +28,7 @@ const GL = () => {
 .then((response) => {
 // console.log(response.data);     //http://localhost:5000
 localStorage.setItem("user_id",response.data.user_id);
-history.push('/');
+history.push('/home');
 })
 .catch((error) => {
  //console.log(error);
