@@ -20,11 +20,12 @@ import CompletePost from '.././CompletePost/CompletePost';
 import {useHistory} from 'react-router-dom';
 import uparrow from '../.././images/up-arrow.png';
 import notupvote from '../.././images/not-vote.png';
-
+import voted from '../.././images/voted.png';
+import notvoted from '../.././images/not-voted.png';
 import axios from 'axios';
 import LeaderBoard from '../LeaderBoard/LeaderBoard';
 
-const Home = () => {
+const HomeAfterLogin = () => {
   
   const history=useHistory();
   const user=localStorage.getItem('user_id');
@@ -174,12 +175,12 @@ history.push('/');
              <CardActions>
                
 
-               {(post.voted==0)?(
+        { user && (post.voted==0)?(
                     <Button disabled={!user} onClick={(e)=>{
                         vote(post.post_id);
-                        }}><img className={classes.voteicon} src={notupvote} /> </Button> ):(
+                        }}><img className={classes.voteicon} src={notvoted} /> </Button> ):(
                             <Button disabled={!user} 
-                                ><img className={classes.voteicon} src={uparrow} /> </Button>
+                                ><img className={classes.voteicon} src={voted} /> </Button>
 
                         
 
@@ -218,7 +219,7 @@ history.push('/');
     );
 }
 
-export default Home
+export default HomeAfterLogin
 
 
 

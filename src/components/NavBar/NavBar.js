@@ -51,14 +51,12 @@ const NavBar = () => {
       
         <AppBar className={classes.appBar} position="sticky"  >
           
-        {/*{user ? (<Typography  component={Link} className={classes.heading} to="/home" variant="h4" >
+      {!user ? (<Typography  component={Link} className={classes.heading} to="/" variant="h4" >
           Open Forum Website
-        </Typography>):(<Typography  component={Link} className={classes.heading} to="/" variant="h4" >
+        </Typography>):(<Typography  component={Link} className={classes.heading} to="/home" variant="h4" >
           Open Forum Website
-    </Typography>)}*/}
-    <Typography  component={Link} className={classes.heading} to="/" variant="h4" >
-          Open Forum Website
-    </Typography>
+    </Typography>)}
+   
       
       <Toolbar className={classes.toolbar}>
         {id ? (

@@ -29,6 +29,7 @@ const GL = () => {
 // console.log(response.data);     //http://localhost:5000
 localStorage.setItem("user_id",response.data.user_id);
 history.push('/home');
+//history.push('/home');
 })
 .catch((error) => {
  //console.log(error);

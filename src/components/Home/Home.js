@@ -20,6 +20,7 @@ import CompletePost from '.././CompletePost/CompletePost';
 import {useHistory} from 'react-router-dom';
 import uparrow from '../.././images/up-arrow.png';
 import notupvote from '../.././images/not-upvote.jpg';
+import voted from '../.././images/voted.png';
 
 import axios from 'axios';
 import LeaderBoard from '../LeaderBoard/LeaderBoard';
@@ -38,7 +39,7 @@ const Home = () => {
   var post_to;
   const getPosts=()=>{
     axios.get('https://morning-temple-69567.herokuapp.com/posts').then(response=>setposts(response.data)).catch((error) => {
-   //   console.log(error);
+ //     console.log(error);
     });  
   }
 
@@ -175,7 +176,7 @@ history.push('/');
                
                <Button disabled={!user} onClick={(e)=>{
                vote(post.post_id);
-               }}><img className={classes.voteicon} src={uparrow} /> </Button>
+               }}><img className={classes.voteicon} src={voted} /> </Button>
                <Typography variant="h6">
                  
                
