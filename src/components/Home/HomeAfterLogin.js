@@ -34,7 +34,7 @@ const HomeAfterLogin = () => {
         },
       })
       .then((response) => {
-        console.log(response);
+      //  console.log(response);
         setposts(response.data);
       })
       .catch((error) => {
@@ -84,7 +84,7 @@ const HomeAfterLogin = () => {
   };
 
   const downvote = (post_id) => {
-    console.log(" down Voted");
+   // console.log(" down Voted");
     //console.log(post_id);
 
     //setPostToBe(post_id);
@@ -106,7 +106,7 @@ const HomeAfterLogin = () => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+      //  console.log(response.data);
         getPosts(); //http://localhost:5000
 
         votes = response.data;
