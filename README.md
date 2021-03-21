@@ -29,6 +29,7 @@ Project plan can be found [here](https://docs.google.com/spreadsheets/d/1SKJNLOZ
 
 ## ER Diagram
 
+![ER Diagram](ER-diagram.jpeg)
 
 ## API Documentation
 
@@ -49,7 +50,7 @@ The API Documentation can be found [here](https://app.swaggerhub.com/apis-docs/S
 
 ## Other Repos
 
-* The Backend repo can be found [here]()
+* The Backend repo can be found [here](https://github.com/Suhas-C-V/Open-Forum-WebApp)
 * The Mobile app repo can be found [here](https://github.com/RohitBernard/Open-Forum-iOS)
 
 # Front End Web Application Link
