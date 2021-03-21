@@ -37,17 +37,24 @@ The API Documentation can be found [here](https://app.swaggerhub.com/apis-docs/S
 
 ## Tools and Tech
 
-1. NodeJS, Express
-2. React.JS
-3. Swift
-4. MySQL
-5. Heroku
+1. Node JS
+2. Express
+3. ReactJS
+3. Google Cloud Console (Google Oauth)
+2. Heroku (Production Server)
+3. AWS RDS (Production DB)
+4. Postman (API Testing)
+5. Swagger
 
 
 ## Other Repos
 
 * The Backend repo can be found [here]()
 * The Mobile app repo can be found [here](https://github.com/RohitBernard/Open-Forum-iOS)
+
+# Front End Web Application Link
+
+https://open-forum-project.herokuapp.com/
 
 
 

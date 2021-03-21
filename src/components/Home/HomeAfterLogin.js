@@ -20,11 +20,11 @@ const HomeAfterLogin = () => {
   const history = useHistory();
   const user = localStorage.getItem("user_id");
   const [user1, setUser] = useState();
-  const [posts, setposts] = useState([]);
-
+  const [posts, setPosts] = useState([]);
+  const [votes,setVotes]=useState([]);
   const [data, setData] = useState({ user_id: "", post_id: "" });
-  var votes;
-
+ // var votes;
+  
 
   const getPosts = () => {
     axios
@@ -34,8 +34,23 @@ const HomeAfterLogin = () => {
         },
       })
       .then((response) => {
-      //  console.log(response);
-        setposts(response.data);
+     //  console.log(response.data);
+       // setposts(response.data);
+        setPosts([]);
+        var pos=response.data;
+        pos.map((p=>{
+          var d={
+            post_id:p.post_id,
+            title:p.title,
+            overview:p.overview,
+            image:p.image,
+            voted:p.voted,
+            votes:p.votes
+          };
+          setPosts(posts=>[...posts,d]);
+
+        }))
+       //   console.log(posts);
       })
       .catch((error) => {
         //   console.log(error);
@@ -71,12 +86,17 @@ const HomeAfterLogin = () => {
         }
       )
       .then((response) => {
-        //console.log(response.data);
-        getPosts(); //http://localhost:5000
+   //     console.log(response.data);
+       // getPosts(); //http://localhost:5000
         //localStorage.setItem("user_id",response.data.user_id);
         //history.push('/');
-
-        votes = response.data;
+        let oldposts=[...posts];
+        var index=oldposts.findIndex((post)=>post.post_id==post_id);
+        oldposts[index].voted=1;
+        oldposts[index].votes=response.data.votes;
+   //     console.log(oldposts);
+        setPosts(oldposts);
+       // votes = response.data;
       })
       .catch((error) => {
         // console.log(error);
@@ -107,9 +127,16 @@ const HomeAfterLogin = () => {
       )
       .then((response) => {
       //  console.log(response.data);
-        getPosts(); //http://localhost:5000
+        //getPosts(); //http://localhost:5000
 
-        votes = response.data;
+       // votes = response.data;
+
+        let oldposts=[...posts];
+        const index=oldposts.findIndex((post)=>post.post_id==post_id);
+        oldposts[index].voted=0;
+        oldposts[index].votes=response.data.votes;
+        setPosts(oldposts);
+
       })
       .catch((error) => {
         // console.log(error);
