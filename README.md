@@ -29,7 +29,7 @@ Project plan can be found [here](https://docs.google.com/spreadsheets/d/1SKJNLOZ
 
 ## ER Diagram
 
-![ER Diagram](ER-diagram.jpeg)
+![ER Diagram](ER_diagram.jpeg)
 
 ## API Documentation
 
