@@ -41,16 +41,23 @@ function LeaderBoard() {
           
         </Typography>
         {users.map((user) => (
-        <Grid  key={user.name} container>
+        <Grid  key={user.email} container>
         
         
           
-            <Grid item xs={11} sm={11} md={11} lg={11}>
-            <Typography variant="body1" component="div">
+            <Grid item  md={4} lg={4}>
+            <Typography variant="h6" component="div">
               {user.name}
             </Typography>
+            
           </Grid>
-          <Grid item xs={1} sm={1} md={1} lg={1}>
+          <Grid item   md={6} lg={6}>
+            <Typography variant="body1" component="div">
+               <span>{user.email} </span>
+            </Typography>
+            
+          </Grid>
+          <Grid item  md={2} lg={2}>
             <Typography variant="h6" component="div">
              {user.Points}
             </Typography>

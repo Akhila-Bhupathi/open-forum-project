@@ -8,8 +8,6 @@ import {
   TextareaAutosize,
 } from "@material-ui/core";
 import { useState } from "react";
-import FileBase from "react-file-base64";
-
 import useStyles from "./styles.js";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -18,6 +16,7 @@ const CreatePost = () => {
   const classes = useStyles();
   const user = localStorage.getItem("user_id");
   const [selectedFile, setSelectedFile] = useState(null);
+  const tokenid = localStorage.getItem("token");
   const [formData, setFormData] = useState({
     user_id: parseInt(user),
     title: "",
@@ -29,43 +28,42 @@ const CreatePost = () => {
   const history = useHistory();
   // const akhi={'one':'two','zeo':'re'};
   const handleSubmit = (e) => {
-
     const formData1 = new FormData();
-  formData1.append("user_id",formData.user_id );
-  formData1.append("title", formData.title);
-  formData1.append("overview",formData.overview );
-  formData1.append("body", formData.body);
-  formData1.append("image",selectedFile );
-  formData1.append("votes",formData.votes );
+    formData1.append("user_id", formData.user_id);
+    formData1.append("title", formData.title);
+    formData1.append("overview", formData.overview);
+    formData1.append("body", formData.body);
+    formData1.append("image", selectedFile);
+    formData1.append("votes", formData.votes);
 
     e.preventDefault();
-  //  console.log(formData);
- //   console.log(selectedFile);
-   // console.log(formData1);
+    //  console.log(formData);
+    //   console.log(selectedFile);
+    // console.log(formData1);
     //console.log(JSON.stringify(formData1));
- /*  axios.post('https://morning-temple-69567.herokuapp.com/posts',formData1).then((response)=>{console.log(response);
+    /*  axios.post('https://morning-temple-69567.herokuapp.com/posts',formData1).then((response)=>{console.log(response);
    history.push('/');
   }).catch((error)=>{
       console.log(error);
   });   */
 
-   axios
+    axios
       .post("https://morning-temple-69567.herokuapp.com/posts", formData1, {
         headers: {
-          'Accept': 'application/json',
-         'Content-Type': 'multipart/form-data'
+          Accept: "application/json",
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
-      }) 
+      })
       .then((response) => {
-      //  console.log(response); //
-       history.push("/");
+        //  console.log(response); //
+        history.push("/home");
       })
       .catch((error) => {
-       // console.log(error);
-      });  
-      
-       // 
-     
+        // console.log(error);
+      });
+
+    //
   };
   return (
     <Container className={classes.div}>
@@ -114,20 +112,15 @@ const CreatePost = () => {
             onChange={(e) => setFormData({ ...formData, body: e.target.value })}
           />
           <div className={classes.fileIn}>
-            
             <input
-            type="file"
-            name="image"
-            //value={formData.image}
-            //onChange={(e) => setFormData({ ...formData, image: e.target.files[0] })}
-           // value={selectedFile}
-            onChange={(e) => setSelectedFile(e.target.files[0])}
+              type="file"
+              name="image"
+              //value={formData.image}
+              //onChange={(e) => setFormData({ ...formData, image: e.target.files[0] })}
+              // value={selectedFile}
+              onChange={(e) => setSelectedFile(e.target.files[0])}
             />
           </div>
-
-
-
-          
           <Button
             variant="contained"
             color="primary"

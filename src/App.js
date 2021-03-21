@@ -20,7 +20,7 @@ function App() {
         <Route path="/badges" component={Badges} />
         <Route path="/completePost/:post" component={CompletePost} />
         <Route path="/home" component={HomeAfterLogin}/>
-    {/*    <Route path="/my_posts" component={MyPosts}/> */} 
+       <Route path="/my_posts" component={MyPosts}/> 
         <Route path="/" component={Home} >
           </Route>
       </Switch> 
