@@ -21,7 +21,41 @@ const MyPosts = () => {
   const getPosts = () => {
     axios
       .get("https://morning-temple-69567.herokuapp.com/posts")
-      .then((response) => setposts(response.data))
+      .then((response) => {
+        setposts([]);
+     /*   for(let p of response.data){
+          if(p.user_id==parseInt(localStorage.getItem('user_id'))){
+            var d={
+              post_id:p.post_id,
+              title:p.title,
+              overview:p.overview,
+              image:p.image,
+              votes:p.votes
+            }
+            console.log(d);
+            setposts(posts=>[...posts,d]);
+          }
+        } */
+      //  console.log(response.data);
+        var pos=response.data;
+        //setposts([]);
+        pos.map((p=>{
+          if(p.user_id==parseInt(localStorage.getItem("user_id"))){
+            var d={
+              post_id:p.post_id,
+              title:p.title,
+              overview:p.overview,
+              votes:p.votes,
+              image:p.image
+            }
+            setposts(posts=>[...posts,d]);
+          }
+
+        }))
+       // console.log(posts);
+       // setposts(response.data)
+      
+      })
       .catch((error) => {
         //   console.log(error);
       });
@@ -37,7 +71,8 @@ const MyPosts = () => {
       })
       .then((response) => {
         //console.log(response.data);
-        getPosts();
+        //getPosts();
+        setposts(posts.filter(p=>p.post_id!==post_id));
       })
       .catch((error) => {
         //console.log(error);
@@ -49,13 +84,15 @@ const MyPosts = () => {
   }, []);
   const classes = useStyles();
   return (
-    <div>
+    
+   <div>
+     {posts.length==0 && <div><Typography variant="h6">No posts</Typography></div>}
       <Container fixed>
         <Grid container className={classes.gridc}>
           <Grid item xs={12} className={classes.posts}>
             <Container className={classes.cont}>
               {posts.map((post) =>
-                post.user_id === user ? (
+                
                   <div key={post.post_id} className={classes.divc}>
                     <Card className={classes.card}>
                       <CardActionArea>
@@ -98,15 +135,15 @@ const MyPosts = () => {
                       </CardActions>
                     </Card>
                   </div>
-                ) : (
-                  <div></div>
-                )
+                
+                  
+                
               )}
             </Container>
           </Grid>
         </Grid>
       </Container>
-    </div>
+    </div>   
   );
 };
 
