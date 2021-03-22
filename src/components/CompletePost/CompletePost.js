@@ -153,6 +153,14 @@ const CompletePost = (props) => {
       });
   };
 
+  const date=(dateStr)=>{
+    
+    var a=dateStr.split(" ");
+var d=a[0].split("-");
+var t=a[1].split(":");
+var formatedDate = new Date(d[0],(d[1]-1),d[2],t[0],t[1],t[2]);
+return formatedDate.toString().substr(0,25);
+  }
   return (
     <>
       <Container maxwidth="sm" className={classes.con}>
@@ -200,7 +208,7 @@ const CompletePost = (props) => {
                   {posts.name}
                 </Typography>
                 <Typography variant="h6" className={classes.date}>
-                  {posts.created}
+                  {date(posts.created)}
                 </Typography>
               </div>
             </Grid>

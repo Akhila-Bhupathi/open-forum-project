@@ -10,7 +10,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import uparrow from "../.././images/up-arrow.png";
-import { Container, Grow, Grid } from "@material-ui/core";
+import { Container, Paper, Grid } from "@material-ui/core";
 import axios from "axios";
 
 const MyPosts = () => {
@@ -23,22 +23,8 @@ const MyPosts = () => {
       .get("https://morning-temple-69567.herokuapp.com/posts")
       .then((response) => {
         setposts([]);
-     /*   for(let p of response.data){
-          if(p.user_id==parseInt(localStorage.getItem('user_id'))){
-            var d={
-              post_id:p.post_id,
-              title:p.title,
-              overview:p.overview,
-              image:p.image,
-              votes:p.votes
-            }
-            console.log(d);
-            setposts(posts=>[...posts,d]);
-          }
-        } */
-      //  console.log(response.data);
         var pos=response.data;
-        //setposts([]);
+    
         pos.map((p=>{
           if(p.user_id==parseInt(localStorage.getItem("user_id"))){
             var d={
@@ -52,8 +38,6 @@ const MyPosts = () => {
           }
 
         }))
-       // console.log(posts);
-       // setposts(response.data)
       
       })
       .catch((error) => {
@@ -70,8 +54,6 @@ const MyPosts = () => {
         },
       })
       .then((response) => {
-        //console.log(response.data);
-        //getPosts();
         setposts(posts.filter(p=>p.post_id!==post_id));
       })
       .catch((error) => {
@@ -86,7 +68,12 @@ const MyPosts = () => {
   return (
     
    <div>
-     {posts.length==0 && <div><Typography variant="h6">No posts</Typography></div>}
+     {posts.length==0 && <div>
+       <Container>
+         
+       <Typography variant="h3" align="center">No posts</Typography>
+       </Container>
+       </div>}
       <Container fixed>
         <Grid container className={classes.gridc}>
           <Grid item xs={12} className={classes.posts}>
