@@ -24,9 +24,9 @@ const CompletePost = (props) => {
   const post_id1 = props.match.params.post;
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
-  const [c,setC]=useState([]);
+  const [c, setC] = useState([]);
 
-var commentd=[];
+  var commentd = [];
 
   const user = localStorage.getItem("user_id");
   const [newcomment, setNewComment] = useState({
@@ -48,21 +48,19 @@ var commentd=[];
       )
       .then((response) => {
         setPosts(response.data.post);
-        var com=response.data.comments;
-        
-        setC([]);
-        com.map((comment)=>{
-          var d={
-            com_id:comment.com_id,
-            body:comment.body,
-            name:comment.name,
-            votes:comment.votes
-          };
-          setC(c=>[...c,d]);
-        });
-       // console.log(c);  
-       
+        var com = response.data.comments;
 
+        setC([]);
+        com.map((comment) => {
+          var d = {
+            com_id: comment.com_id,
+            body: comment.body,
+            name: comment.name,
+            votes: comment.votes,
+          };
+          setC((c) => [...c, d]);
+        });
+        // console.log(c);
       })
       .catch((error) => {
         //   console.log(error);
@@ -87,14 +85,11 @@ var commentd=[];
         }
       )
       .then((response) => {
-    
-        let newc=[...c];
-        var index=newc.findIndex(com=>com.com_id==com_id);
-        newc[index].votes=response.data.votes;
-        newc.sort((a, b) => (a.votes > b.votes) ? -1 : 1)
+        let newc = [...c];
+        var index = newc.findIndex((com) => com.com_id == com_id);
+        newc[index].votes = response.data.votes;
+        newc.sort((a, b) => (a.votes > b.votes ? -1 : 1));
         setC(newc);
-  
-
 
         //votes=response.data;
       })
@@ -120,52 +115,43 @@ var commentd=[];
         }
       )
       .then((response) => {
-     
-       let newc=[...c];
-       var index=newc.findIndex(com=>com.com_id==com_id);
-       newc[index].votes=response.data.votes;
-       newc.sort((a, b) => (a.votes > b.votes) ? -1 : 1)
-       setC(newc);
-   
+        let newc = [...c];
+        var index = newc.findIndex((com) => com.com_id == com_id);
+        newc[index].votes = response.data.votes;
+        newc.sort((a, b) => (a.votes > b.votes ? -1 : 1));
+        setC(newc);
       })
       .catch((error) => {
         // console.log(error);
       });
   };
 
- 
-
   useEffect(() => {
     getPosts();
-
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     e.target.reset();
-   
+
     axios
       .post(
         `https://morning-temple-69567.herokuapp.com/posts/${post_id1}/comments`,
         newcomment
       )
       .then((response) => {
-
-       var newc={
-        com_id:response.data.com_id,
-        body:response.data.body,
-        name:localStorage.getItem('name'),
-        votes:0
-      }
-        setC(c=>[...c,newc]);
+        var newc = {
+          com_id: response.data.com_id,
+          body: response.data.body,
+          name: localStorage.getItem("name"),
+          votes: 0,
+        };
+        setC((c) => [...c, newc]);
       })
       .catch((error) => {
         //console.log(error);
       });
-    
   };
-
-
 
   return (
     <>
@@ -208,8 +194,8 @@ var commentd=[];
               <div className={classes.pro}>
                 <br />
                 <br />
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <Typography variant="h6" className={classes.name}>
                   {posts.name}
                 </Typography>
@@ -274,9 +260,6 @@ var commentd=[];
             <Typography variant="body2">No comments</Typography>
           </Paper>
         )}
-       
-         
-
 
         {c.map((comment) => (
           <Paper>

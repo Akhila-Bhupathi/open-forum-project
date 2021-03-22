@@ -28,7 +28,7 @@ const MyPosts = () => {
   };
 
   const deletePost = (post_id) => {
-    console.log(post_id);
+   // console.log(post_id);
     axios
       .delete(`https://morning-temple-69567.herokuapp.com/posts/${post_id}`, {
         headers: {
