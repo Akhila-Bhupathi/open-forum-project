@@ -13,3 +13,8 @@
     border-radius: inherit;
     transition: width .2s ease-in;
 }
+.images{
+    height:50px;
+    width:50px;
+    margin-top: 0;
+}

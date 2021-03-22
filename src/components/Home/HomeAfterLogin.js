@@ -140,7 +140,7 @@ const HomeAfterLogin = () => {
     <Grow in>
       <Container fixed>
         <Grid container className={classes.gridc}>
-          <Grid item xs={6} className={classes.posts}>
+          <Grid item xs={7} className={classes.posts}>
             <Container className={classes.cont}>
               {posts.map((post) => (
                 <div key={post.post_id} className={classes.divc}>
@@ -206,7 +206,7 @@ const HomeAfterLogin = () => {
               ))}
             </Container>
           </Grid>
-          <Grid item xs={6} className={classes.leader}>
+          <Grid item xs={5} className={classes.leader}>
             <LeaderBoard />
           </Grid>
         </Grid>

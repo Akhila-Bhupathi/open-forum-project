@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from './components/NavBar/NavBar.js';
 import CompletePost from "./components/CompletePost/CompletePost"; 
 import Badges from "./components/Badges/Badges";
+import LeaderBoardDetails from "./components/LeaderBoard/LeaderBoardDetails";
 import MyPosts from './components/MyPosts/MyPosts';
 import FileUploadPage from './components/CreatePost/FileUploadPage';
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/create" component={CreatePost} />
+        <Route path="/leaderboard" component={LeaderBoardDetails} />
         <Route path="/badges" component={Badges} />
         <Route path="/completePost/:post" component={CompletePost} />
         <Route path="/home" component={HomeAfterLogin}/>

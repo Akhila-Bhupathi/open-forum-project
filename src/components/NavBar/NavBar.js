@@ -49,6 +49,10 @@ const NavBar = () => {
   const create = () => {
     history.push("/create");
   };
+  const leaderboard = () => {
+    history.push("/leaderboard");
+  };
+
   return (
     <AppBar className={classes.appBar} position="sticky">
       {!user ? (
@@ -79,6 +83,14 @@ const NavBar = () => {
               className={classes.icon}
               style={{ cursor: "pointer" }}
             />
+             <Typography
+              variant="h6"
+              className={classes.leaderboard}
+              onClick={leaderboard}
+              style={{ cursor: "pointer" }}
+            >
+              LeaderBoard
+            </Typography>
             <Typography
               variant="h6"
               className={classes.badges}
@@ -87,6 +99,7 @@ const NavBar = () => {
             >
               Badges
             </Typography>
+           
             <Typography
               variant="h6"
               className={classes.my_posts}

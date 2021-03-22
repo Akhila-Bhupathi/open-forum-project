@@ -48,39 +48,72 @@ const setBadge=(points)=>{
       
     <Card className={classes.root} elevation={5}>
       <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          Users and points
-        </Typography>
-        <Typography  variant="h4">
-          Top Users
-        </Typography>
-        <Typography variant="subtitle2">
-          <hr />
+      <Grid   container>
+        
+        
           
+        <Grid item  md={3} lg={3}>
+        <Typography variant="h4" component="div">
+         Name
         </Typography>
-        {users.slice(0,4).map((user) => (
+        
+      </Grid>
+      <Grid item   md={4} lg={4}>
+        <Typography variant="h4" component="div">
+           <span>mail </span>
+        </Typography>
+        
+      </Grid>
+      <Grid item  md={2} lg={2}>
+        <Typography variant="h4" component="div">
+         Points
+        </Typography>
+      </Grid>
+      <Grid item  md={2} lg={2}>
+        <Typography variant="h4" component="div">
+         Posts
+        </Typography>
+      </Grid>
+      <Grid item  md={1} lg={1}>
+      <Typography variant="h4" component="div">
+         Badge
+        </Typography>
+      </Grid>
+       <br/>
+       <br/>
+        
+        
+      <br/>
+      <br/>
+      </Grid>
+        {users.map((user) => (
         <Grid  key={user.email} container>
         
         
           
-            <Grid item  md={4} lg={4}>
+            <Grid item  md={3} lg={3}>
             <Typography variant="h6" component="div">
               {user.name}
             </Typography>
             
           </Grid>
-          <Grid item   md={6} lg={6}>
+          <Grid item   md={4} lg={4}>
             <Typography variant="body1" component="div">
                <span>{user.email} </span>
             </Typography>
             
           </Grid>
-          
           <Grid item  md={2} lg={2}>
+            <Typography variant="h6" component="div">
+             {user.Points}
+            </Typography>
+          </Grid>
+          <Grid item  md={2} lg={2}>
+            <Typography variant="h6" component="div">
+             {user.total_posts}
+            </Typography>
+          </Grid>
+          <Grid item  md={1} lg={1}>
             <img src={setBadge(user.Points)} className={classes.badge}/>
           </Grid>
         

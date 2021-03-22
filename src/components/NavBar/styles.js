@@ -23,7 +23,7 @@ export default makeStyles((theme) => ({
   
   toolbar: {
     display:'flex',
-    width: '400px',
+    width: '600px',
   },
   profile: {
     display: 'flex',
@@ -35,10 +35,15 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     width:'100px'
   },
+  leaderboard: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width:'150px'
+  },
   my_posts: {
     display: 'flex',
     justifyContent: 'space-between',
-    width:'120px'
+    width:'110px'
   },
 
   profilephoto: {
