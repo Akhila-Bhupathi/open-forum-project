@@ -50,18 +50,6 @@ var commentd=[];
         setPosts(response.data.post);
         var com=response.data.comments;
         
-
-    
-       // console.log(comments);
-      /*  comments.map((comment)=>{
-          commentd.push({
-            com_id:comment.com_id,
-            body:comment.body,
-            name:comment.name,
-            votes:comment.votes
-          })
-        });
-        console.log(commentd); */
         setC([]);
         com.map((comment)=>{
           var d={
@@ -86,8 +74,7 @@ var commentd=[];
       user_id: parseInt(localStorage.getItem("user_id")),
       com_id: com_id,
     };
-    // console.log(data);
-    // console.log(JSON.stringify(data));
+
     axios
       .post(
         "https://morning-temple-69567.herokuapp.com/votes/comments",
@@ -100,15 +87,13 @@ var commentd=[];
         }
       )
       .then((response) => {
-    //    console.log(response.data);
-
+    
         let newc=[...c];
         var index=newc.findIndex(com=>com.com_id==com_id);
         newc[index].votes=response.data.votes;
         newc.sort((a, b) => (a.votes > b.votes) ? -1 : 1)
         setC(newc);
-     //   console.log(c);
-      //  getComments();
+  
 
 
         //votes=response.data;
@@ -123,8 +108,6 @@ var commentd=[];
       user_id: parseInt(localStorage.getItem("user_id")),
       com_id: com_id,
     };
-    //  console.log(data);
-    //  console.log(JSON.stringify(data));
     axios
       .post(
         "https://morning-temple-69567.herokuapp.com/votes/down/comments",
@@ -137,39 +120,20 @@ var commentd=[];
         }
       )
       .then((response) => {
-        // console.log("downvote");
-        // console.log(response.data);
-       // getComments();
+     
        let newc=[...c];
        var index=newc.findIndex(com=>com.com_id==com_id);
        newc[index].votes=response.data.votes;
        newc.sort((a, b) => (a.votes > b.votes) ? -1 : 1)
        setC(newc);
-     //  console.log(c);
-        //votes=response.data;
+   
       })
       .catch((error) => {
         // console.log(error);
       });
   };
 
-  const getComments = () => {
-    axios
-      .get(
-        `https://morning-temple-69567.herokuapp.com/posts/${post_id1}/${user}`,
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      )
-      .then((response) => {
-        setComments(response.data.comments);
-      })
-      .catch((error) => {
-        //     console.log(error);
-      });
-  };
+ 
 
   useEffect(() => {
     getPosts();
@@ -179,35 +143,13 @@ var commentd=[];
   const handleSubmit = (e) => {
     e.preventDefault();
     e.target.reset();
-    // setNewComment({...newcomment,post_id:post_id1});
- //    console.log(newcomment);
-    
-     var nw=newcomment;
-  //   console.log(nw);
-     
+   
     axios
       .post(
         `https://morning-temple-69567.herokuapp.com/posts/${post_id1}/comments`,
         newcomment
       )
       .then((response) => {
-    //    console.log(response);
-        // const nw=response.data.body;
-        // console.log(response);
-      //  getComments();
-    /*  var newc={
-        com_id:response.data.com_id,
-        name:localStorage.getItem('name'),
-        body:nw.body,
-        created:new Date(),
-        votes:0
-      }
-      console.log(newc);
-      const updatedcom = [...comments];
-    updatedcom.unshift(newc);
-    setComments(updatedcom); */
-
-       //  setComments(comments=>[...comments,newc]);
 
        var newc={
         com_id:response.data.com_id,
@@ -216,22 +158,14 @@ var commentd=[];
         votes:0
       }
         setC(c=>[...c,newc]);
-   //      console.log("New comments");
-   //      console.log(c);
       })
       .catch((error) => {
         //console.log(error);
       });
-    //history.push(`/completePost/${post_id1}`);
-    /*  dispatch(addPost(formData));
-      history.push('/');*/
+    
   };
 
-  /*const dateformat=(d)=>{
-    var dateParts = d.split("-");
-var jsDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2].substr(0, 2), dateParts[2].substr(3, 2), dateParts[2].substr(6, 2), dateParts[2].substr(9, 2));
-return js
-  }  */
+
 
   return (
     <>

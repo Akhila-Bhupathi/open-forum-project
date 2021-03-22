@@ -21,7 +21,7 @@ const HomeAfterLogin = () => {
   const user = localStorage.getItem("user_id");
   const [user1, setUser] = useState();
   const [posts, setPosts] = useState([]);
-  const [votes,setVotes]=useState([]);
+ 
   const [data, setData] = useState({ user_id: "", post_id: "" });
  // var votes;
   
@@ -34,8 +34,7 @@ const HomeAfterLogin = () => {
         },
       })
       .then((response) => {
-     //  console.log(response.data);
-       // setposts(response.data);
+    
         setPosts([]);
         var pos=response.data;
         pos.map((p=>{
@@ -59,21 +58,11 @@ const HomeAfterLogin = () => {
 
 
   const vote = (post_id) => {
-    //console.log("Voted");
-    //console.log(post_id);
-
-    //setPostToBe(post_id);
-    //setData({...data,post_id:post_id});
     var data = {
       user_id: parseInt(localStorage.getItem("user_id")),
       post_id: post_id,
     };
-    // console.log(data);
-    // console.log(JSON.stringify(data));
-    // setData({...data,post_id:post_id});
-    // console.log(data);
-    // callApi();
-    // const data={"user_id":user,"post_id":post_id};
+  
     axios
       .post(
         "https://morning-temple-69567.herokuapp.com/votes/posts",
@@ -86,10 +75,7 @@ const HomeAfterLogin = () => {
         }
       )
       .then((response) => {
-   //     console.log(response.data);
-       // getPosts(); //http://localhost:5000
-        //localStorage.setItem("user_id",response.data.user_id);
-        //history.push('/');
+  
         let oldposts=[...posts];
         var index=oldposts.findIndex((post)=>post.post_id==post_id);
         oldposts[index].voted=1;
@@ -99,7 +85,7 @@ const HomeAfterLogin = () => {
 
  //  console.log(oldposts)
         setPosts(oldposts);
-       // votes = response.data;
+       
       })
       .catch((error) => {
         // console.log(error);
@@ -107,11 +93,7 @@ const HomeAfterLogin = () => {
   };
 
   const downvote = (post_id) => {
-   // console.log(" down Voted");
-    //console.log(post_id);
-
-    //setPostToBe(post_id);
-    //setData({...data,post_id:post_id});
+  
     var data = {
       user_id: parseInt(localStorage.getItem("user_id")),
       post_id: post_id,
@@ -129,11 +111,7 @@ const HomeAfterLogin = () => {
         }
       )
       .then((response) => {
-      //  console.log(response.data);
-        //getPosts(); //http://localhost:5000
-
-       // votes = response.data;
-
+  
         let oldposts=[...posts];
         const index=oldposts.findIndex((post)=>post.post_id==post_id);
         oldposts[index].voted=0;
