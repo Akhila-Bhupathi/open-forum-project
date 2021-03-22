@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
 import {
   Paper,
   Typography,
@@ -14,20 +13,15 @@ import {
 import useStyles from "./styles.js";
 import uparrow from "../.././images/up-arrow.png";
 import downarrow from "../.././images/down-arrow.png";
-import { useHistory } from "react-router-dom";
 import SendIcon from "@material-ui/icons/Send";
 
 const CompletePost = (props) => {
   const classes = useStyles();
-  const history = useHistory();
-  const location = useLocation();
   const post_id1 = props.match.params.post;
   const [posts, setPosts] = useState([]);
-  const [comments, setComments] = useState([]);
   const [c, setC] = useState([]);
 
-  var commentd = [];
-
+  
   const user = localStorage.getItem("user_id");
   const [newcomment, setNewComment] = useState({
     user_id: parseInt(user),

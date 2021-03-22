@@ -3,10 +3,10 @@ import axios from "axios";
 import { Paper, Typography, Grid, Button } from "@material-ui/core";
 import ProgressBar from "./ProgressBar";
 import "./style.css";
-import bronze from '../.././images/bronze.PNG';
-import silver from '../.././images/silver.PNG';
-import gold from '../.././images/gold.PNG';
-import platinum from '../.././images/platinum.PNG';
+import bronze from "../.././images/bronze.PNG";
+import silver from "../.././images/silver.PNG";
+import gold from "../.././images/gold.PNG";
+import platinum from "../.././images/platinum.PNG";
 
 const Badges = () => {
   const [users, setUsers] = useState([]);
@@ -68,7 +68,7 @@ const Badges = () => {
                 {user.email}
               </Typography>
               <br />
-              
+
               <Typography variant="h5" align="center">
                 Total posts : {user.total_posts}
               </Typography>
@@ -79,14 +79,14 @@ const Badges = () => {
                 Total Points : {user.Points}
               </Typography>
               <br />
-              
+
               <Button
                 onClick={(e) => view(user.Points)}
                 style={{ backgroundColor: "#3f51b5", color: "white" }}
               >
                 View Progress
               </Button>
-              <br/>
+              <br />
               <br />
             </Paper>
           </div>
@@ -104,7 +104,7 @@ const Badges = () => {
           <Typography variant="h6">Level 1</Typography>
         </Grid>
         <Grid item xs={1}>
-          <img src={bronze} className="images"/>
+          <img src={bronze} className="images" />
         </Grid>
       </Grid>
 
@@ -116,7 +116,7 @@ const Badges = () => {
           <Typography variant="h6">Level 2</Typography>
         </Grid>
         <Grid item xs={1}>
-          <img src={silver} className="images"/>
+          <img src={silver} className="images" />
         </Grid>
       </Grid>
 
@@ -128,7 +128,7 @@ const Badges = () => {
           <Typography variant="h6">Level 3</Typography>
         </Grid>
         <Grid item xs={1}>
-          <img src={gold} className="images"/>
+          <img src={gold} className="images" />
         </Grid>
       </Grid>
 
@@ -140,7 +140,7 @@ const Badges = () => {
           <Typography variant="h6">Level 4</Typography>
         </Grid>
         <Grid item xs={1}>
-          <img src={platinum} className="images"/>
+          <img src={platinum} className="images" />
         </Grid>
       </Grid>
     </div>
