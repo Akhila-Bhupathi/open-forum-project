@@ -105,6 +105,7 @@ var commentd=[];
         let newc=[...c];
         var index=newc.findIndex(com=>com.com_id==com_id);
         newc[index].votes=response.data.votes;
+        newc.sort((a, b) => (a.votes > b.votes) ? -1 : 1)
         setC(newc);
      //   console.log(c);
       //  getComments();
@@ -142,6 +143,7 @@ var commentd=[];
        let newc=[...c];
        var index=newc.findIndex(com=>com.com_id==com_id);
        newc[index].votes=response.data.votes;
+       newc.sort((a, b) => (a.votes > b.votes) ? -1 : 1)
        setC(newc);
      //  console.log(c);
         //votes=response.data;

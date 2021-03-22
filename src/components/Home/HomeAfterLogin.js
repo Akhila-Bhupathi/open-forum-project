@@ -95,6 +95,9 @@ const HomeAfterLogin = () => {
         oldposts[index].voted=1;
         oldposts[index].votes=response.data.votes;
    //     console.log(oldposts);
+   oldposts.sort((a, b) => (a.votes > b.votes) ? -1 : 1)
+
+   console.log(oldposts)
         setPosts(oldposts);
        // votes = response.data;
       })
@@ -135,6 +138,7 @@ const HomeAfterLogin = () => {
         const index=oldposts.findIndex((post)=>post.post_id==post_id);
         oldposts[index].voted=0;
         oldposts[index].votes=response.data.votes;
+        oldposts.sort((a, b) => (a.votes > b.votes) ? -1 : 1)
         setPosts(oldposts);
 
       })
