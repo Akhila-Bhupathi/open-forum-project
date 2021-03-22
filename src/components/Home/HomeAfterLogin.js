@@ -97,7 +97,7 @@ const HomeAfterLogin = () => {
    //     console.log(oldposts);
    oldposts.sort((a, b) => (a.votes > b.votes) ? -1 : 1)
 
-   console.log(oldposts)
+ //  console.log(oldposts)
         setPosts(oldposts);
        // votes = response.data;
       })
